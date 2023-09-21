@@ -20,7 +20,12 @@ export class CardComponent implements OnInit {
   constructor(private service:PokemonService) { }
 
   ngOnInit(): void {
-    this.service.getPokemon('charizard').subscribe({
+    this.getPokemon('pikachu')
+
+  }
+
+  getPokemon(searchName:string){
+    this.service.getPokemon(searchName).subscribe({
       next:(res) =>{
         this.pokemon = {
           id:res.id,
@@ -33,6 +38,7 @@ export class CardComponent implements OnInit {
       },
       error:(err) => console.log(err)
     })
+
   }
 
 }

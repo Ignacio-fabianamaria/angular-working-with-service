@@ -139,7 +139,7 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
   </details>
 
-  ## 🏗️ Estrutura do arquivo `pokemonData.ts
+  ## 🏗️ Estrutura do arquivo `pokemonData.ts``
 
 O arquivo pokemonData.ts  define uma estrutura de dados para representar informações detalhadas sobre Pokémon em uma aplicação Angular. Ele desempenha o papel de um modelo ou interface que estabelece a estrutura e o formato dos dados que a aplicação espera receber e manipular relacionados aos Pokémon. A estrutura de dados definida neste arquivo inclui propriedades como identificador único (ID), nome, imagens (sprites) e tipos associados a um Pokémon, garantindo que os dados sejam tipados e organizados de forma consistente em toda a aplicação
 
@@ -162,6 +162,8 @@ O arquivo pokemonData.ts  define uma estrutura de dados para representar informa
       };
     }[];
   };
+
+```
 
 </details>
 
