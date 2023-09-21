@@ -6,7 +6,7 @@ Este projeto foi desenvolvido com o propósito de auxiliar na compreensão dos c
 - `ng g c components/card` - cria o component card
 - `ng g s services/pokemon` -cria o arquivo de service
 
-## Estrutura de Diretórios
+## 📁 Estrutura de Diretórios
 
 O projeto está organizado da seguinte maneira:
 
@@ -21,7 +21,7 @@ O projeto está organizado da seguinte maneira:
       A diretiva `ngFor` é utilizada para iterar sobre uma lista de atributos do Pokémon, gerando automaticamente elementos `<span>` para cada atributo na lista. Isso torna o componente de card flexível e capaz de lidar com diferentes Pokémon e seus atributos de forma dinâmica.
   - **service/**: A pasta de serviço abriga os arquivos relacionados à lógica de negócios ou ao acesso a APIs externas.
 
-## Arquivo de Serviço (pokemonService)
+## 🧰 Arquivo de Serviço (pokemonService)
 Em Angular, os serviços são módulos dedicados à lógica de negócios e à gestão de dados que não estão diretamente ligados à interface do usuário. Eles desempenham um papel essencial na organização do código, seguindo o princípio da separação de responsabilidades.
 
 <details>
@@ -40,7 +40,7 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
 </details>
 
-## Comunicação com o Arquivo Environment
+## 🔌 Comunicação com o Arquivo Environment
 
   O arquivo `environment` em Angular é uma prática comum para armazenar variáveis de ambiente, como URLs de API, chaves de acesso e outros valores que podem variar dependendo do ambiente de execução, como desenvolvimento, teste ou produção.
 
@@ -61,7 +61,7 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
   </details>
 
-## Observable e Subscribe em Angular
+## 🔄 Observable e Subscribe em Angular
 
 **Observable** e **Subscribe** são conceitos fundamentais em Angular quando se trata de lidar com requisições assíncronas
 
@@ -75,7 +75,7 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
  - No serviço `PokemonService`:
 
-    ```typescript
+     ```typescript
     import { Observable } from 'rxjs';
     import { PokemonData } from '../models/pokemonData';
 
@@ -94,6 +94,7 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
     ```typescript
     import { Component, OnInit } from '@angular/core';
+    import { PokemonData } from 'src/app/models/pokemonData';
     import { PokemonService } from 'src/app/services/pokemon.service';
 
     @Component({
@@ -102,17 +103,31 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
       styleUrls: ['./card.component.css']
     })
     export class CardComponent implements OnInit {
-      name: string = 'CHARMANDER';
-      attributesTypes: string[] = ['FIRE', 'ROCK'];
+      pokemon: PokemonData = {
+        id:'',
+        name:'',
+        sprites:{front_default:''},
+        types:[]
+      }
+      name:string = 'CHARMANDER'
+      attributesTypes:string[] = ['FIRE','ROCK']
 
       constructor(private service: PokemonService) {}
 
       ngOnInit(): void {
         // Ao iniciar o componente,  o serviço é chamado e se inscreve no Observable
         // para receber os dados do Pokémon.
-        this.service.getPokemon('charmander').subscribe({
-          next: (res) => console.log(res), // Manipula os dados quando estão disponíveis.
-          error: (err) => console.log(err)   // Manipula erros, se ocorrerem.
+        this.service.getPokemon('charizard').subscribe({
+          next: (res) => {
+            this.pokemon = {
+              id: res.id,
+              name: res.name,
+              sprites: res.sprites,
+              types: res.types
+            }
+            console.log(this.pokemon)
+          },
+          error: (err) => console.log(err)
         });
       }
     }
@@ -122,8 +137,33 @@ Em Angular, os serviços são módulos dedicados à lógica de negócios e à ge
 
   Isso permite que a aplicação lide de forma eficiente com operações assíncronas, como a obtenção de dados de Pokémon da API, garantindo que a interface do usuário permaneça responsiva enquanto as operações são executadas em segundo plano.
 
+  </details>
+
+  ## 🏗️ Estrutura do arquivo `pokemonData.ts
+
+O arquivo pokemonData.ts  define uma estrutura de dados para representar informações detalhadas sobre Pokémon em uma aplicação Angular. Ele desempenha o papel de um modelo ou interface que estabelece a estrutura e o formato dos dados que a aplicação espera receber e manipular relacionados aos Pokémon. A estrutura de dados definida neste arquivo inclui propriedades como identificador único (ID), nome, imagens (sprites) e tipos associados a um Pokémon, garantindo que os dados sejam tipados e organizados de forma consistente em toda a aplicação
+
+<details>
+
+<summary>src/app/models/pokemonData.ts</summary>
+
+```typescript
+  export type PokemonData = {
+    id: string;
+    name: string;
+    sprites: {
+      front_default: string;
+    };
+    types: {
+      slot: number;
+      type: {
+        name: string;
+        url: string;
+      };
+    }[];
+  };
+
 </details>
 
-  </details>
 
 ## Em Construção 🚧
