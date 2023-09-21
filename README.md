@@ -10,6 +10,8 @@ Este projeto foi desenvolvido com o propósito de auxiliar na compreensão dos c
 
 O projeto está organizado da seguinte maneira:
 
+
+
 - **app/**
   - **components/**: Nesta pasta,encontr-se os componentes reutilizáveis da aplicação.
     - **card/**: Dentro desta pasta, você encontrará o componente de card de Pokémon. Este componente é responsável por representar cards de Pokémon na aplicação. Cada card contém:
@@ -169,3 +171,17 @@ O arquivo pokemonData.ts  define uma estrutura de dados para representar informa
 
 
 ## Em Construção 🚧
+
+Próximas implementações planejadas:
+
+- [ ] Separar o input de busca de Pokémon do componente `Card`.
+- [ ] Criar um novo componente chamado `SearchBar` com:
+  - [ ] Um campo de entrada para buscar um Pokémon.
+  - [ ] Um botão de "Pesquisar" para iniciar a busca.
+- [ ] Criar um componente `Header` com:
+  - [ ] Um menu de navegação com links para a documentação do Angular.
+  - [ ] Um link para a página da PokeAPI.
+- [ ] Criar um componente `Footer` com:
+  - [ ] Links para o seu perfil no GitHub.
+  - [ ] Links para o seu perfil no LinkedIn.
+
